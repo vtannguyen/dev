@@ -9,13 +9,12 @@ sudo systemctl start docker
 sudo systemctl enable docker
 sudo groupadd docker
 sudo usermod -aG docker $USER
-newgrp docker
 
 # Install lazydocker
 
 curl https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/install_update_linux.sh | bash
 
-cat << EOF >> ~/.bash_profile
+cat <<EOF >> ~/.bashrc
 function lazydocker-ssh() {
     ssh -L /tmp/docker-remote.sock:/var/run/docker.sock $1 -fN
     DOCKER_HOST=unix:///tmp/docker-remote.sock lazydocker
@@ -32,7 +31,11 @@ sudo dnf install zlib-devel bzip2 bzip2-devel readline-devel sqlite sqlite-devel
 
 curl https://pyenv.run | bash
 
-echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bash_profile
+cat <<EOF >> ~/.bashrc
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+EOF
 
 # Install Tmux
 
@@ -44,7 +47,7 @@ sudo dnf -y install make
 
 # Setup bash aliases
 
-cat << EOF >> ~/.bash_profile
+cat <<EOF >> ~/.bashrc
 alias ..="cd .."
 alias ll="ls -la"
 alias va="source .venv/bin/activate"
