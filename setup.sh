@@ -31,11 +31,9 @@ sudo dnf install zlib-devel bzip2 bzip2-devel readline-devel sqlite sqlite-devel
 
 curl https://pyenv.run | bash
 
-cat <<EOF >> ~/.bashrc
-export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-EOF
+echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bashrc
+echo 'command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bashrc
+echo 'eval "$(pyenv init -)"' >> ~/.bashrc
 
 # Install Tmux
 
