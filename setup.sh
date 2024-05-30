@@ -10,6 +10,13 @@ sudo systemctl enable docker
 sudo groupadd docker
 sudo usermod -aG docker $USER
 
+# Install Node.js
+
+sudo dnf -y install nodejs
+
+# Install nvm
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+
 # Install lazydocker
 
 curl https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/install_update_linux.sh | bash
@@ -23,6 +30,10 @@ function lazydocker-ssh() {
     DOCKER_HOST=unix:///tmp/docker-remote.sock lazydocker
 }
 EOF
+
+# Install Make
+
+sudo dnf -y install make
 
 # Install pyenv
 
@@ -42,9 +53,29 @@ echo 'eval "$(pyenv init -)"' >> ~/.bashrc
 
 sudo dnf -y install tmux
 
-# Install Make
+git clone https://github.com/vtannguyen/tmux-conf.git
+cd tmux-conf
+./install.sh
+cd ../
+rm -rf tmux-conf
 
-sudo dnf -y install make
+# Install Vim
+
+sudo dnf -y install vim wl-clipboard
+
+git clone https://github.com/vtannguyen/vim-dotfiles.git ~/.vim && cp ~/.vim/.vimrc ~/
+cd ~/.vim
+sudo ./install_caps2esc.sh
+./install_formatters.sh
+cd ../
+
+# Install i3
+
+git clone https://github.com/vtannguyen/i3.git
+cd i3
+./install.sh
+cd ..
+rm -rf i3
 
 # Setup bash aliases
 
