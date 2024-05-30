@@ -16,6 +16,9 @@ curl https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/i
 
 cat <<EOF >> ~/.bashrc
 function lazydocker-ssh() {
+    if [ -f /tmp/docker-remote.sock ]; then
+        rm /tmp/docker-remote.sock
+    fi
     ssh -L /tmp/docker-remote.sock:/var/run/docker.sock $1 -fN
     DOCKER_HOST=unix:///tmp/docker-remote.sock lazydocker
 }
