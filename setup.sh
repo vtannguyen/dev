@@ -10,6 +10,20 @@ sudo systemctl enable docker
 sudo groupadd docker
 sudo usermod -aG docker $USER
 
+# Install disk management tools
+
+sudo dnf -y install duf
+sudo dnf copr enable -y gourlaysama/dust
+sudo dnf -y install dust
+
+# Install zoxide
+curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
+echo 'eval "$(zoxide init --cmd cd bash)"' >> ~/.bashrc
+
+# Install fzf
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install --all
+
 # Install Node.js
 
 sudo dnf -y install nodejs
