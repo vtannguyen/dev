@@ -98,7 +98,7 @@ alias ..="cd .."
 alias ll="ls -la"
 alias va="source .venv/bin/activate"
 alias ve="python -m venv .venv"
-alias vp="pip install pylint mypy black isort autoflake piptools"
+alias vp="pip install pylint mypy black isort autoflake pip-tools"
 # Set vi for bash editing mode
 set -o vi
 # Set vi as the default editor for all apps that check this
