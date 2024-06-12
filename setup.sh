@@ -49,6 +49,10 @@ EOF
 
 sudo dnf -y install make
 
+# Install just - make alternative
+
+sudo dnf -y install just
+
 # Install pyenv
 
 ## First we install some common development tools like gcc and make, Fedora provides a group of packages for that call Development Tools
