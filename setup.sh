@@ -21,6 +21,13 @@ curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh 
 echo 'eval "$(zoxide init --cmd cd bash)"' >> ~/.bashrc
 
 # Install fzf
+sudo dnf -y install ripgrep
+cat <<EOF >> ~/.bashrc
+if type rg &> /dev/null; then
+    export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
+fi
+EOF
+
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install --all
 
