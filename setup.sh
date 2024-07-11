@@ -20,6 +20,10 @@ sudo dnf -y install dust
 curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
 echo 'eval "$(zoxide init --cmd cd bash)"' >> ~/.bashrc
 
+# Install tool for grep
+
+sudo dnf install the_silver_searcher
+
 # Install fzf
 sudo dnf -y install ripgrep
 cat <<EOF >> ~/.bashrc
