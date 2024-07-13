@@ -17,6 +17,9 @@ sudo dnf -y install dust
 # Install clipboard copying tool for vim and tmux
 sudo dnf -y install xsel
 
+# Install files search tool
+sudo dnf -y install fd-find
+
 # Install java for vim grammar checking
 sudo dnf -y install java-latest-openjdk.x86_64
 
