@@ -1,7 +1,6 @@
 #!/bin/bash
 
 # Install docker
-
 sudo dnf -y install dnf-plugins-core
 sudo dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo
 sudo dnf -y install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
@@ -11,17 +10,18 @@ sudo groupadd docker
 sudo usermod -aG docker $USER
 
 # Install disk management tools
-
 sudo dnf -y install duf
 sudo dnf copr enable -y gourlaysama/dust
 sudo dnf -y install dust
+
+# Install clipboard copying tool for vim and tmux
+sudo dnf -y install xsel
 
 # Install zoxide
 curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
 echo 'eval "$(zoxide init --cmd cd bash)"' >> ~/.bashrc
 
 # Install tool for grep
-
 sudo dnf install the_silver_searcher
 
 # Install fzf
@@ -36,14 +36,12 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install --all
 
 # Install Node.js
-
 sudo dnf -y install nodejs
 
 # Install nvm
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
 
 # Install lazydocker
-
 curl https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/install_update_linux.sh | bash
 
 cat <<EOF >> ~/.bashrc
@@ -57,15 +55,12 @@ function lazydocker-ssh() {
 EOF
 
 # Install Make
-
 sudo dnf -y install make
 
 # Install just - make alternative
-
 sudo dnf -y install just
 
 # Install pyenv
-
 ## First we install some common development tools like gcc and make, Fedora provides a group of packages for that call Development Tools
 sudo dnf groupinstall "Development Tools" -y
 
@@ -79,7 +74,6 @@ echo 'command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.
 echo 'eval "$(pyenv init -)"' >> ~/.bashrc
 
 # Install Tmux
-
 sudo dnf -y install tmux
 
 git clone https://github.com/vtannguyen/tmux-conf.git
@@ -89,9 +83,6 @@ cd ../
 rm -rf tmux-conf
 
 # Install Vim
-
-sudo dnf -y install vim wl-clipboard
-
 git clone https://github.com/vtannguyen/vim-dotfiles.git ~/.vim && cp ~/.vim/.vimrc ~/
 cd ~/.vim
 sudo ./install_caps2esc.sh
@@ -99,7 +90,6 @@ sudo ./install_caps2esc.sh
 cd ../
 
 # Install i3
-
 git clone https://github.com/vtannguyen/i3.git
 cd i3
 ./install.sh
@@ -107,7 +97,6 @@ cd ..
 rm -rf i3
 
 # Setup bash aliases
-
 cat <<EOF >> ~/.bashrc
 alias ..="cd .."
 alias ll="ls -la"
